@@ -1,0 +1,221 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="!recipeId">Create Recipe</ion-title>
+    <ion-title *ngIf="recipeId">Update Recipe</ion-title>
+    <ion-buttons slot='start'>
+      <ion-button (click)="handleBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="showHelp()">
+        <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="handleSaveButton()">
+        <ion-icon slot="icon-only" name="checkmark-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid [fixed]="true" class="content-wrapper ion-no-padding">
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-list-header>
+            <ion-label><b>Recipe Name</b></ion-label>
+          </ion-list-header>
+          <ion-item lines="full">
+            <ion-input type="text" [class]="checkTheme ? 'dark' : ' ' +  'ion-margin-top'" [(ngModel)]="recipeName"
+              placeholder="Spaghetti Bolognese"></ion-input>
+          </ion-item>
+          <ion-list-header>
+            <ion-label><b>Description</b></ion-label>
+          </ion-list-header>
+          <ion-item lines="full">
+            <ion-textarea [class]="checkTheme ? 'dark' : ''" placeholder="Amazing authentic recipe..." cols="20"
+              rows="4" [autoGrow]="true" [(ngModel)]="recipeDescription"></ion-textarea>
+          </ion-item>
+          <ion-list-header>
+            <ion-label><b>Image</b></ion-label>
+          </ion-list-header>
+          <ion-item  lines="none">
+            <ion-img *ngIf="base64Image" class="image" [src]="base64Image"></ion-img>
+            <ion-img *ngIf="!base64Image && imageUrl" [src]="imageUrl"></ion-img>
+            <ion-img *ngIf="!base64Image && !imageUrl" src="../../../assets/images/imgplaceholder.png"></ion-img>
+          </ion-item>
+
+          <ion-item class="ion-text-center" lines="full">
+            <ion-label>
+              <ion-button color="main" (click)="takePhoto()">Camera</ion-button>
+            </ion-label>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-grid class="ion-no-margin ion-no-padding">
+              <ion-row class="ion-margin-top ion-align-items-center ion-justify-content-between">
+                <ion-col>
+                  <ion-list-header class="ion-no-padding">
+                    <ion-label><b>Servings</b></ion-label>
+                  </ion-list-header>
+                  <ion-item class="ion-no-padding" lines="none">
+                    <ion-input [class]="checkTheme ? 'dark' : ' ' + 'servings'" [(ngModel)]="recipeServings"
+                      type="number" placeholder="ex. 1"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-list-header class="ion-no-padding">
+                    <ion-label><b>Prep Time</b></ion-label>
+                  </ion-list-header>
+                  <ion-row class="ion-align-items-center">
+                    <ion-col size="4">
+                      <ion-input [class]="checkTheme ? 'dark' : ''" [(ngModel)]="recipePrepHours" type="number"
+                        placeholder="00"></ion-input>
+                    </ion-col>
+                    <ion-col size="1">
+                      <ion-label class="ion-text-center"><b>:</b></ion-label>
+                    </ion-col>
+                    <ion-col size="4">
+                      <ion-input [class]="checkTheme ? 'dark' : ''" [(ngModel)]="recipePrepMinutes" type="number"
+                        placeholder="00"></ion-input>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+                <ion-col>
+                  <ion-list-header class="ion-no-padding">
+                    <ion-label><b>Cook Time</b></ion-label>
+                  </ion-list-header>
+                  <ion-row class="ion-align-items-center">
+                    <ion-col size="4">
+                      <ion-input [class]="checkTheme ? 'dark' : ''" [(ngModel)]="recipeCookHours" type="number"
+                        placeholder="00"></ion-input>
+                    </ion-col>
+                    <ion-col size="1">
+                      <ion-label class="ion-text-center"><b>:</b></ion-label>
+                    </ion-col>
+                    <ion-col size="4">
+                      <ion-input [class]="checkTheme ? 'dark' : ''" [(ngModel)]="recipeCookMinutes" type="number"
+                        placeholder="00"></ion-input>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+
+          <ion-list-header>
+            <ion-label><b>Ingredients</b></ion-label>
+            <ion-button [color]="editIngredients ? 'main' : 'primary'" (click)="editIngredient()">
+              <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="addIngredientToList()">
+              <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+          </ion-list-header>
+          <ion-item lines="none">
+            <ion-grid class="ion-no-margin ion-no-padding">
+              <ion-row>
+                <ion-col>
+                  <ion-input [class]="checkTheme ? 'dark' : ''" placeholder="500" [(ngModel)]="ingredient.amount"
+                    type="number"></ion-input>
+                </ion-col>
+                <ion-col>
+                  <ion-select [class]="checkTheme ? 'dark' : ''" placeholder="gram" [(ngModel)]="ingredient.unit">
+                    <ion-select-option *ngFor="let unit of units">{{unit}}</ion-select-option>
+                  </ion-select>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-input [class]="checkTheme ? 'dark' : ''" placeholder="carrots" [(ngModel)]="ingredient.name"
+                    type="text"></ion-input>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item lines="none" *ngIf="ingredientList.length === 0">
+            <ion-label class="ion-text-wrap">No listed ingredients.</ion-label>
+          </ion-item>
+
+          <ion-item-sliding *ngFor="let ingredient of ingredientList; let i = index">
+            <ion-item-options side="start">
+              <ion-item-option color="danger" (click)="deleteIngredient(ingredient)">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+            <ion-item *ngIf="!editIngredients" lines="none">
+              <ion-label>{{ingredient.amount}} {{ingredient.unit === "N/A" ? "" : ingredient.unit}} {{ingredient.name}}</ion-label>
+            </ion-item>
+            <ion-item *ngIf="editIngredients">
+              <ion-grid class="editIngredientFields">
+                <ion-row>
+                  <ion-col size="2">
+                    <ion-input [class]="checkTheme ? 'dark' : ''" placeholder="500" [(ngModel)]="ingredient.amount"
+                      type="number"></ion-input>
+                  </ion-col>
+                  <ion-col size="3">
+                    <ion-select [class]="checkTheme ? 'dark' : ''" placeholder="gram" [(ngModel)]="ingredient.unit">
+                      <ion-select-option *ngFor="let unit of units">{{unit}}</ion-select-option>
+                    </ion-select>
+                  </ion-col>
+                  <ion-col size="7">
+                    <ion-input [class]="checkTheme ? 'dark' : ''" placeholder="carrots" [(ngModel)]="ingredient.name"
+                      type="text">
+                    </ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+          </ion-item-sliding>
+
+        </ion-list>
+
+
+        <ion-item-divider></ion-item-divider>
+
+        <!--Input for Instructions...-->
+        <ion-list>
+          <ion-list-header>
+            <ion-label><b>Instructions</b></ion-label>
+            <ion-button [color]="disableReorder ? 'primary' : 'main'" (click)="toggleReorder()">
+              <ion-icon slot="icon-only" name="move"></ion-icon>
+            </ion-button>
+            <ion-button [color]="editInstruction ? 'main' : 'primary'" (click)="editInstructions()">
+              <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="addInstructionToList()">
+              <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+          </ion-list-header>
+          <ion-item lines="none">
+            <ion-textarea auto-grow="true" [class]="checkTheme ? 'dark' : ''" [(ngModel)]="instruction" type="text"
+              placeholder="Wash and cut carrots..."></ion-textarea>
+          </ion-item>
+
+          <ion-item lines="none" *ngIf="instructionList.length === 0">
+            <ion-label class="ion-text-wrap">No listed instructions.</ion-label>
+          </ion-item>
+
+          <ion-reorder-group [disabled]="disableReorder" (ionItemReorder)="doReorder($event)">
+            <ion-reorder *ngFor="let instruction of instructionList; let i = index">
+              <ion-item lines="none">
+                <ion-item-sliding>
+                  <ion-item-options side="start">
+                    <ion-item-option color="danger" (click)="deleteInstruction(instruction)">
+                      <ion-icon slot="icon-only" name="trash"></ion-icon>
+                    </ion-item-option>
+                  </ion-item-options>
+                  <ion-item lines="none" class="editInstructionFields">
+                    <ion-label position="float">{{i + 1}}.</ion-label>
+                    <ion-textarea [readonly]="!editInstruction" auto-grow="true" [class]="checkTheme ? 'dark' : ''" [value]="instruction" type="text"
+                                  placeholder="Wash and cut carrots..."></ion-textarea>
+                  </ion-item>
+                </ion-item-sliding>
+              </ion-item>
+            </ion-reorder>
+          </ion-reorder-group>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

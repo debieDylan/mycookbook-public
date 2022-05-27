@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Profile</ion-title>
+    <ion-buttons slot='start'>
+      <ion-back-button defaultHref='/'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollY]="false">
+  <ion-grid [fixed]="true" class="content-wrapper">
+    <ion-row class="ion-margin-top">
+      <ion-col size="5"><ion-label><b>Name</b></ion-label></ion-col>
+      <ion-col size="7"><ion-label>{{user.displayName}}</ion-label></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="5"><ion-label><b>E-mail</b></ion-label></ion-col>
+      <ion-col size="7">
+        <ion-label class="ion-text-wrap">{{user.email}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="5">
+        <ion-label><b>Verified</b></ion-label>
+      </ion-col>
+      <ion-col size="7">
+        <ion-icon *ngIf="user.emailVerified" size="large" name="checkmark-circle" color="success"></ion-icon>
+        <ion-icon *ngIf="!user.emailVerified" size="large" name="close-circle-outline" color="danger"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="!user.emailVerified">
+      <ion-col class="ion-text-center">
+        <ion-button expand="block" (click)="sendVerificationEmail()" color="main">Send Verification Email</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button expand="block" (click)="changePassword()" color="main">Change Password</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button expand="block" (click)="deleteAccount()" color="danger">Delete Account</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,38 @@
+ion-header {
+    background: var(--ion-color-main);
+    color: var(--ion-color-main-contrast);
+}
+
+.card-wrapper {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.tocLabel {
+    margin-left: 10px !important;
+}
+
+.tocLink:hover {
+    cursor: pointer;
+}
+
+ion-card {
+    margin: 0;
+    width: auto;
+    min-width: 100vw;
+    height: auto;
+    min-height: 100vh;
+    border-radius: 0px;
+}
+
+ion-content {
+    --background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url(../../../assets/images/mycookbook-min.jpg) 0 0/100% 100% no-repeat;
+}
+
+@media only screen and (min-width: 600px) {
+    ion-card {
+        min-width: 600px;
+        max-width: 600px;
+    }
+  }

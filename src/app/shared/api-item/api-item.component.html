@@ -1,0 +1,15 @@
+<ion-item (click)="router.navigate(['recipe-details', recipe.id], {relativeTo: activatedRoute})" lines="full">
+  <ion-thumbnail slot="start">
+    <ion-img [src]="recipe.image"></ion-img>
+  </ion-thumbnail>
+  <ion-label class="ion-text-wrap">
+    <ion-row>
+      <b>{{recipe.title}}</b>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        cook time: <b>{{recipe.convertMinutes}}</b>
+      </ion-col>
+    </ion-row>
+  </ion-label>
+</ion-item>

@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Settings</ion-title>
+    <ion-menu-button slot="end" menuId="side-menu"></ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollY]="false">
+  <ion-grid [fixed]="true" class="ion-no-padding content-wrapper">
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item lines = full>
+            <ion-icon slot="start" name="moon"></ion-icon>
+            <ion-label>Toggle Dark Theme</ion-label>
+            <ion-toggle [(ngModel)]="darkValue" (ionChange)="toggleTheme()" slot="end"></ion-toggle>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

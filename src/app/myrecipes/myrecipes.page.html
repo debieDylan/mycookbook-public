@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      My Recipes
+    </ion-title>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-menu-button slot="end" menuId="side-menu"></ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">My Recipes</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div>
+    <ion-grid class="ion-no-padding content-wrapper" [fixed]="true">
+      <ion-row>
+        <ion-col class="ion-justify-content-center">
+          <ion-item lines="full" vertical="top">
+            <ion-searchbar animated="true" showCancelButton="focus" placeholder="search recipe..."
+              [(ngModel)]="searchTerm"></ion-searchbar>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <app-recipe-item *ngFor="let recipe of recipes$ | async | filter:searchTerm" [recipe]="recipe">
+            </app-recipe-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button color="main" [routerLink]="['recipe', { relativeTo: this.router, skipLocationChange: true }]">
+          <ion-icon name="add" size="large"></ion-icon>
+          <ion-label>Add new Recipe</ion-label>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

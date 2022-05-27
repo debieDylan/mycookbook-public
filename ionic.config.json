@@ -1,0 +1,7 @@
+{
+  "name": "myCookbook",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

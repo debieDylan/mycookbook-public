@@ -1,0 +1,56 @@
+<ion-content scrollY="false">
+  <div class="card-wrapper">
+    <ion-card>
+      <ion-header>
+        <ion-toolbar>
+      
+          <ion-buttons slot='start'>
+            <ion-back-button defaultHref='/'></ion-back-button>
+          </ion-buttons>
+      
+          <ion-title>Register</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-card-content>
+        <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate autocomplete="off">
+          <ion-item lines="full">
+            <ion-label position="floating">Name</ion-label>
+            <ion-input formControlName="name" type="text" required></ion-input>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-label position="floating">Password*</ion-label>
+            <ion-input formControlName="password" type="password" required></ion-input>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-label position="floating">Repeat Password</ion-label>
+            <ion-input formControlName="repeat" type="password" required></ion-input>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-label position="floating">E-mail</ion-label>
+            <ion-input formControlName="email" type="email" required></ion-input>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-checkbox [checked]="false" formControlName="toc"></ion-checkbox>
+            <ion-label class="tocLabel">"I Accept the *Terms and Conditions"</ion-label>
+          </ion-item>
+          <ion-row>
+            <ion-col>
+              <ion-text color="danger" *ngIf="registerForm.errors?.active">{{errorMessage}}</ion-text>
+              <ion-button color="main" type="submit" expand="block">Register</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-label><em>*Passwords should be atleast 6 characters long.</em></ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-label (click)="presentModal()" class="tocLink"><em>*<u>View the Terms of Conditions here</u>.</em></ion-label>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

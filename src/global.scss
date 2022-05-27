@@ -1,0 +1,111 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import "~swiper/scss";
+@import "~@ionic/angular/css/ionic-swiper";
+
+/*ion-searchbar {
+    input {
+      border-radius: 30px !important;
+      color: rgb(31, 31, 31) !important;
+      background-color: rgb(241, 241, 241) !important;
+    box-shadow: none !important;
+    }
+  }*/
+
+  ion-button {
+    --border-radius: 2px;
+}
+
+:root {
+  --ion-color-main: #65bb45;
+	--ion-color-main-rgb: 101,187,69;
+	--ion-color-main-contrast: #ffffff;
+	--ion-color-main-contrast-rgb: 0,0,0;
+	--ion-color-main-shade: #59a53d;
+	--ion-color-main-tint: #74c258;
+
+  --ion-color-mainlight: #f0f5e4;
+	--ion-color-mainlight-rgb: 204,234,139;
+	--ion-color-mainlight-contrast: #000000;
+	--ion-color-mainlight-contrast-rgb: 0,0,0;
+	--ion-color-mainlight-shade: #b4ce7a;
+	--ion-color-mainlight-tint: #d1ec97;
+}
+
+.ion-color-main {
+  --ion-color-base: var(--ion-color-main);
+  --ion-color-base-rgb: var(--ion-color-main-rgb);
+  --ion-color-contrast: var(--ion-color-main-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-main-contrast-rgb);
+  --ion-color-shade: var(--ion-color-main-shade);
+  --ion-color-tint: var(--ion-color-main-tint);
+}
+
+.ion-color-mainlight {
+  --ion-color-base: var(--ion-color-mainlight);
+  --ion-color-base-rgb: var(--ion-color-mainlight-rgb);
+  --ion-color-contrast: var(--ion-color-mainlight-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-mainlight-contrast-rgb);
+  --ion-color-shade: var(--ion-color-mainlight-shade);
+  --ion-color-tint: var(--ion-color-mainlight-tint);
+}
+
+ion-header ion-toolbar{
+  --background: var(--ion-color-main);
+  --color: var(--ion-color-main-contrast);
+}
+
+.alertColor {
+  color: #65bb45 !important
+}
+
+ion-content {
+  --background: var(--ion-color-medium);
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  height: auto;
+  min-height: 93vh;
+  padding: 0;
+  margin-bottom: -20vh;
+  box-shadow: 0px 0px 20px 1px #00000033;
+  background-color: var(--ion-color-light);
+}
+
+.editInstruction {
+  .alert-input-wrapper {
+      height: auto !important;
+
+      textarea {
+        min-height: 150px !important;
+        min-width: 120px !important;
+      }
+  }
+}

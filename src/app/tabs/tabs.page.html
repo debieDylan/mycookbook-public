@@ -1,0 +1,47 @@
+<ion-menu #menu side="end" menuId="side-menu" contentId="main">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot='start'>
+        <ion-button (click)="menu.close()">
+          <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-title class="ion-text-center ion-margin-top">{{currentUser.displayName}}</ion-title>
+    <ion-list (click)="menu.close()">
+      <ion-item class="link" lines="none" (click)="navigateToPage('profile')">My Profile</ion-item>
+      <ion-item class="link" lines="none" (click)="signOut()">Sign out</ion-item>
+      <ion-item-divider></ion-item-divider>
+      <ion-title class="ion-text-center ion-margin-top">Tabs</ion-title>
+      <ion-item class="link" (click)="navigateToPage('myrecipes')" lines="none">My Recipes</ion-item>
+      <ion-item class="link" (click)="navigateToPage('favorites')" lines="none">Favorites</ion-item>
+      <ion-item class="link" (click)="navigateToPage('search')" lines="none">Search</ion-item>
+      <ion-item class="link" (click)="navigateToPage('settings')" lines="none">Settings</ion-item>
+      <ion-item-divider></ion-item-divider>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-tabs id="main">
+  <ion-tab-bar color="mainlight" slot="bottom">
+
+    <ion-tab-button tab="myrecipes">
+      <ion-label>My Recipes</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="favorites">
+      <ion-label>Favorites</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="search">
+      <ion-label>Search</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="settings">
+      <ion-label>Settings</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>

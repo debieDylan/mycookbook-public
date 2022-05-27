@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search</ion-title>
+    <ion-menu-button slot="end" menuId="side-menu"></ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <ion-grid [fixed]="true" class="ion-no-padding content-wrapper">
+    <ion-row>
+      <ion-col>
+        <ion-item lines="full" vertical="top">
+          <ion-searchbar [value]="searchText" debounce="500" (ionChange)="searchChangeHandler($event)"></ion-searchbar>
+        </ion-item>
+        <ion-list>
+          <app-api-item *ngFor="let recipe of recipes" [recipe]="recipe"></app-api-item>
+        </ion-list>
+
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadRecipes($event)">
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more recipes...">
+
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

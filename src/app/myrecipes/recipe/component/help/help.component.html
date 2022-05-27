@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recipe Help</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label><strong>Saving a Recipe</strong></ion-label>
+    </ion-list-header>
+
+    <ion-item lines="none">
+      <div class="vertical">
+        <ion-label class="ion-text-wrap">To save a recipe, press the <ion-icon slot="icon-only" name="checkmark-outline"></ion-icon> button in the header. The following information needs to be provided:</ion-label>
+      <ul>
+        <li>Recipe Title</li>
+        <li>Recipe Description</li>
+        <li>A picture</li>
+        <li>Serving size</li>
+        <li>Preparation and cooking time*</li>
+        <li>Atleast 1 listed ingredient</li>
+        <li>Atleast 1 listed instruction</li>
+      </ul>
+      <ion-label class="ion-text-wrap">If any of these values are missing while attempting to save the recipe, a helpful message will appear onscreen displaying what the error is.<br><br><em>*Value is based on time format, so 60 = 60minutes. The value is divided in hours and minutes. Values over 59 will be automatically converted to the appropriate time format when saved.</em></ion-label>
+      </div>
+    </ion-item>
+
+    <ion-item-divider></ion-item-divider>
+
+    <ion-list-header>
+      <ion-label><strong>Adding ingredients and instructions</strong></ion-label>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap">An ingredient needs an amount, unit and name. select 'N/A' as unit if you want this to stay empty. After filling in the information in the ingredient / instruction field, press the <ion-icon color="primary" slot="icon-only" name="add-outline"></ion-icon> button to list the item.</ion-label>
+    </ion-item>
+
+    <ion-item-divider></ion-item-divider>
+    <ion-list-header>
+      <ion-label><strong>Edit recipes / instructions</strong></ion-label>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap">Press the <ion-icon color="primary" slot="icon-only" name="pencil-outline"></ion-icon> button. This will activate Edit mode. Your ingredients or Instructions are now editable. Press again to disable edit mode.<br><br><em>Note: When activating Edit mode on Instructions, the Reordering mode will be disabled.</em></ion-label>
+    </ion-item>
+
+    <ion-item-divider></ion-item-divider>
+    
+
+    <ion-list-header>
+      <ion-label><strong>Delete recipes / instructions</strong></ion-label>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap">Swipe right on the desired ingredient / instruction. The <ion-icon color="danger" slot="icon-only" name="trash"></ion-icon> button will appear on the left. Press the button to delete the entry.</ion-label>
+    </ion-item>
+
+    <ion-item-divider></ion-item-divider>
+
+    <ion-list-header>
+      <ion-label><strong>Reordering instructions</strong></ion-label>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap">Press the <ion-icon color="primary" slot="icon-only" name="move-outline"></ion-icon> button to activate Reordering mode. While this mode is active, you can now drag and reorder ingredients. Activating reorder mode deactivates the swipe to delete. Deactivate the mode by pressing the button again to be able to delete the entry.</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

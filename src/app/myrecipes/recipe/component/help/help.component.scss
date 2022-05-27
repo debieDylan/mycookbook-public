@@ -1,0 +1,13 @@
+.instructions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: x-large;
+    padding: 1em;
+}
+
+.vertical {
+    display: flex;
+    flex-direction: column;
+}

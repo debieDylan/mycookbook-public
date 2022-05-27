@@ -1,0 +1,96 @@
+.actionButtons {
+    padding: 0%;
+    margin: auto;
+    height: 100px;
+}
+
+ion-select{
+    max-width: 100% !important;
+    background: rgb(242, 247, 242) !important;
+    border-radius: 5px !important;
+    margin-right: 5px !important;
+    margin-left: 5px !important;
+}
+
+ion-input, ion-textarea {
+    border: 1px solid #f1f1f1 !important;
+    border-radius: 5px !important;
+    font-size: 0.9em;
+    --background: rgb(242, 247, 242) !important;
+    padding-left: 5px !important;
+    margin-top: 0px !important;
+    margin-bottom: 5px !important;
+}
+
+.servings {
+    margin-right: 10px !important;
+}
+
+ion-input.dark, ion-textarea.dark {
+    border: 1px solid #414141 !important;
+    border-radius: 5px !important;
+    font-size: 0.9em;
+    --background: rgb(74, 77, 74) !important;
+    padding-left: 5px !important;
+    margin-top: 0px !important;
+    margin-bottom: 5px !important;
+}
+
+ion-select.dark{
+    max-width: 100% !important;
+    background: rgb(74, 77, 74) !important;
+    border-radius: 5px !important;
+    margin-right: 5px !important;
+    margin-left: 5px !important;
+}
+
+ion-img {
+    padding: 0;
+    height: 200px !important;
+    margin: 0 auto;
+}
+
+.show {
+    display: none;
+}
+
+.editIngredientFields.hide {
+    display: none;
+}
+
+.editInstructionFields {
+    ion-textarea {
+        --background: white !important;
+        font-size: 1em !important;
+        border: 0px solid white !important;
+    }
+}
+
+.editIngredientFields {
+    display: flex;
+
+    ion-input, ion-textarea {
+        border: 0px solid #ffffff !important;
+        border-radius: 5px !important;
+        font-size: 1em !important;
+        --background: rgb(255, 255, 255) !important;
+        padding-left: 5px !important;
+        margin-top: 0px !important;
+        margin-bottom: 5px !important;
+    }
+
+    ion-select{
+        max-width: 100% !important;
+        background: rgb(255, 255, 255) !important;
+        border-radius: 5px !important;
+        margin-right: 5px !important;
+        margin-left: 5px !important;
+    }
+
+    .amount {
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+    }
+}
+

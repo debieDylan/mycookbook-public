@@ -1,0 +1,56 @@
+.actionButtons {
+    padding: 0%;
+    margin: auto;
+    height: 100px;
+}
+
+.informationValues {
+    div {
+        border: 1px solid #e2e2e2;
+        box-shadow: 0px 0px 20px 1px #00000033;
+    }
+
+    ion-label {
+        font-size: x-large;
+    }
+}
+
+.bottomInformationValues {
+    text-align: center;
+}
+
+
+@media only screen and (max-width: 991px) {
+    .row-header {
+        display: block;
+    }
+
+    .informationValues {
+        display: none;
+    }
+  }
+
+@media only screen and (min-width: 991px) {
+    ion-img {
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px 1px #00000033;
+        z-index: 1;
+    }
+
+    .row-title {
+        box-shadow:  0px 11px 20px -10px #00000033, 0px -11px 20px -10px #00000033;
+    }
+
+    .informationValues {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bottomInformationValues {
+        display: none;
+    }
+  }
