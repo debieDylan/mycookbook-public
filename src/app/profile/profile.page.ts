@@ -14,7 +14,7 @@ export class ProfilePage implements OnInit {
   user = this.authService.currentUser
 
   constructor(public authService: AuthService, public alertController: AlertController, public toastController: ToastController,
-              private recipeService: RecipeService, private databaseService: DatabaseService) { }
+    private recipeService: RecipeService, private databaseService: DatabaseService) { }
 
   ngOnInit() {
   }
@@ -37,10 +37,10 @@ export class ProfilePage implements OnInit {
           text: 'Send',
           handler: async (inputs) => {
             //first authenticate
-            const credential = await this.authService.reAuthenticateUser(inputs.password).catch( async _ => {
+            const credential = await this.authService.reAuthenticateUser(inputs.password).catch(async _ => {
               await this.toast("password is incorrect.")
             })
-            if(credential) {
+            if (credential) {
               //run function to change password.
               this.authService.sendPasswordReset()
               this.toast(`A mail has been send to ${this.user.email}`)
@@ -73,10 +73,10 @@ export class ProfilePage implements OnInit {
           text: 'Delete Account',
           handler: async (inputs) => {
             //first authenticate.
-            const credential = await this.authService.reAuthenticateUser(inputs.password).catch( async _ => {
+            const credential = await this.authService.reAuthenticateUser(inputs.password).catch(async _ => {
               await this.toast("password is incorrect.")
             })
-            if(credential) {
+            if (credential) {
               await this.recipeService.deleteAllRecipes()
               await this.databaseService.deleteUser()
               this.toast("Operation succesful, user deleted.")

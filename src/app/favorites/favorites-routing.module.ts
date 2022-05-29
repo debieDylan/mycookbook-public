@@ -14,7 +14,7 @@ const routes: Routes = [
     resolve: {
       special: RecipeResolverService
     },
-    loadChildren: () => import('../myrecipes/recipe-details/recipe-details.module').then( m => m.RecipeDetailsPageModule),
+    loadChildren: () => import('../myrecipes/recipe-details/recipe-details.module').then(m => m.RecipeDetailsPageModule),
   },
 ];
 
@@ -22,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FavoritesPageRoutingModule {}
+export class FavoritesPageRoutingModule { }

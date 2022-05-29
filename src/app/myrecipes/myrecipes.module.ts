@@ -18,8 +18,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     IonicModule,
     MyrecipesPageRoutingModule,
     SharedModule,
-    Ng2SearchPipeModule, 
+    Ng2SearchPipeModule,
   ],
   declarations: [MyrecipesPage]
 })
-export class MyrecipesPageModule {}
+export class MyrecipesPageModule { }

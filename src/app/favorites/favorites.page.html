@@ -19,11 +19,13 @@
     <ion-row>
       <ion-col>
         <ion-item lines="full" vertical="top">
-          <ion-searchbar animated="true" showCancelButton="focus" placeholder="search recipe..." [(ngModel)]="searchTerm"></ion-searchbar>
+          <ion-searchbar animated="true" showCancelButton="focus" placeholder="search recipe..."
+            [(ngModel)]="searchTerm"></ion-searchbar>
         </ion-item>
-      
+
         <ion-list>
-          <app-recipe-item *ngFor="let recipe of favorites$ | async | filter:searchTerm" [recipe]="recipe"></app-recipe-item>
+          <app-recipe-item *ngFor="let recipe of favorites$ | async | filter:searchTerm" [recipe]="recipe">
+          </app-recipe-item>
         </ion-list>
       </ion-col>
     </ion-row>

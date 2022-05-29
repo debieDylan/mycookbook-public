@@ -17,12 +17,12 @@ export class LoginPage implements OnInit, ViewWillEnter {
   loginForm: FormGroup
   imageSource: string
 
-  constructor(public databaseService: DatabaseService, 
-              public authService: AuthService, 
-              public formBuilder: FormBuilder,
-              public router: Router,
-              public alertController: AlertController,
-              public toastController: ToastController) { }
+  constructor(public databaseService: DatabaseService,
+    public authService: AuthService,
+    public formBuilder: FormBuilder,
+    public router: Router,
+    public alertController: AlertController,
+    public toastController: ToastController) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -46,7 +46,7 @@ export class LoginPage implements OnInit, ViewWillEnter {
     try {
       await this.authService.signInWithEmail(this.loginForm.value.email, this.loginForm.value.password)
     } catch (error) {
-      this.loginForm.setErrors({ unauthenticated: true})
+      this.loginForm.setErrors({ unauthenticated: true })
     }
   }
 
@@ -65,10 +65,10 @@ export class LoginPage implements OnInit, ViewWillEnter {
         {
           text: 'Send',
           handler: async (inputs) => {
-            if(inputs.email) {
+            if (inputs.email) {
               await this.authService.sendPasswordReset(inputs.email)
-              .then(async _ => await this.toastMessage(`A recovery mail has been sent to ${inputs.email}`))
-              .catch(async _ => await this.toastMessage('The e-mailadress submitted is invalid.'))
+                .then(async _ => await this.toastMessage(`A recovery mail has been sent to ${inputs.email}`))
+                .catch(async _ => await this.toastMessage('The e-mailadress submitted is invalid.'))
             } else {
               this.toastMessage('Email is empty')
             }

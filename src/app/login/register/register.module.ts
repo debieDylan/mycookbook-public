@@ -15,9 +15,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    RegisterPageRoutingModule, 
+    RegisterPageRoutingModule,
     SharedModule
   ],
   declarations: [RegisterPage]
 })
-export class RegisterPageModule {}
+export class RegisterPageModule { }

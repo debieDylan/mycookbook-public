@@ -4,7 +4,7 @@
     height: 100px;
 }
 
-ion-select{
+ion-select {
     max-width: 100% !important;
     background: rgb(242, 247, 242) !important;
     border-radius: 5px !important;
@@ -12,7 +12,8 @@ ion-select{
     margin-left: 5px !important;
 }
 
-ion-input, ion-textarea {
+ion-input,
+ion-textarea {
     border: 1px solid #f1f1f1 !important;
     border-radius: 5px !important;
     font-size: 0.9em;
@@ -26,7 +27,8 @@ ion-input, ion-textarea {
     margin-right: 10px !important;
 }
 
-ion-input.dark, ion-textarea.dark {
+ion-input.dark,
+ion-textarea.dark {
     border: 1px solid #414141 !important;
     border-radius: 5px !important;
     font-size: 0.9em;
@@ -36,7 +38,7 @@ ion-input.dark, ion-textarea.dark {
     margin-bottom: 5px !important;
 }
 
-ion-select.dark{
+ion-select.dark {
     max-width: 100% !important;
     background: rgb(74, 77, 74) !important;
     border-radius: 5px !important;
@@ -60,7 +62,7 @@ ion-img {
 
 .editInstructionFields {
     ion-textarea {
-        --background: white !important;
+        --background: var(--ion-color-light) !important;
         font-size: 1em !important;
         border: 0px solid white !important;
     }
@@ -69,19 +71,20 @@ ion-img {
 .editIngredientFields {
     display: flex;
 
-    ion-input, ion-textarea {
+    ion-input,
+    ion-textarea {
         border: 0px solid #ffffff !important;
         border-radius: 5px !important;
         font-size: 1em !important;
-        --background: rgb(255, 255, 255) !important;
+        --background: var(--ion-color-light) !important;
         padding-left: 5px !important;
         margin-top: 0px !important;
         margin-bottom: 5px !important;
     }
 
-    ion-select{
+    ion-select {
         max-width: 100% !important;
-        background: rgb(255, 255, 255) !important;
+        background: var(--ion-color-light) !important;
         border-radius: 5px !important;
         margin-right: 5px !important;
         margin-left: 5px !important;
@@ -93,4 +96,3 @@ ion-img {
         max-width: 100%;
     }
 }
-

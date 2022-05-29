@@ -10,7 +10,7 @@
 
 <ion-content class="ion-text-center ion-align-items-center">
   <div class="instructions">
-    <swiper #swiper [slidesPerView]="1" [spaceBetween]="50">
+    <swiper #swiper [config]="config" (slideChange)="slideChanged($event)">
       <ng-template swiperSlide *ngFor="let instruction of instructions">
         {{instruction}}
       </ng-template>
@@ -18,15 +18,16 @@
   </div>
 </ion-content>
 
+
 <ion-footer>
   <ion-toolbar color="mainlight">
     <ion-buttons slot="start" size="large">
-      <ion-button color="main" (click)="handleBack()">
+      <ion-button class="swiper-button-prev-unique" color="success">
         <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end" size="large">
-      <ion-button color="main" (click)="handleContinue()">
+      <ion-button class="swiper-button-next-unique" color="success">
         <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
       </ion-button>
     </ion-buttons>

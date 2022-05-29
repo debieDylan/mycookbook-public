@@ -33,7 +33,7 @@
         </div>
       </ion-col>
     </ion-row>
-    
+
     <ion-row class="row-title">
       <ion-col>
         <ion-item lines="full">
@@ -80,8 +80,8 @@
     <ion-row>
       <ion-col>
         <ion-item class="bottomInformationValues" lines="full">
-          <ion-label>Preperation: <strong>{{recipe.prepTimeInMinutes}}</strong></ion-label>
-          <ion-label>Cooking: <strong>{{recipe.cookTimeInMinutes}}</strong></ion-label>
+          <ion-label>Prep: <strong>{{prepMinutes}}</strong></ion-label>
+          <ion-label>Cook: <strong>{{cookMinutes}}</strong></ion-label>
           <ion-label>Servings: <strong>{{recipe.servings}}</strong></ion-label>
         </ion-item>
         <div [ngSwitch]="segment">

@@ -154,7 +154,7 @@ export class RecipePage implements OnInit, OnDestroy {
   editInstructions(): void {
     this.editInstruction = !this.editInstruction
 
-    if(!this.disableReorder) {
+    if (!this.disableReorder) {
       this.disableReorder = true
     }
   }
@@ -165,10 +165,14 @@ export class RecipePage implements OnInit, OnDestroy {
 
   toggleReorder() {
     this.disableReorder = !this.disableReorder
+
+    if (this.editInstruction === true) {
+      this.editInstruction = false
+    }
   }
 
   async handleSaveButton(): Promise<void> {
-    if(this.doubleClick) {
+    if (this.doubleClick) {
       this.doubleClick = false
       if (this.recipeId) {
         await this.updateRecipe()
@@ -186,23 +190,21 @@ export class RecipePage implements OnInit, OnDestroy {
    * @returns true if both recipes are equal
    */
   private compareRecipes(recipe1: Recipe, recipe2: Recipe): boolean {
-    return recipe1.name === recipe2.name ?
-      recipe1.description === recipe2.description ?
-        recipe1.servings === recipe2.servings ?
-          recipe1.prepTimeInMinutes === recipe2.prepTimeInMinutes ?
-            recipe1.cookTimeInMinutes === recipe2.cookTimeInMinutes ?
-              recipe1.imageBase64 === recipe2.imageBase64 ?
-                recipe1.ingredients === recipe2.ingredients ?
-                  recipe1.instructions === recipe2.instructions ?
-                    recipe1.author === recipe2.author ? true : false
-                    : false
-                  : false
-                : false
-              : false
-            : false
-          : false
-        : false
-      : false
+    let flag: boolean = false
+
+    if (recipe1.name === recipe2.name
+      && recipe1.description === recipe2.description
+      && recipe1.servings === recipe2.servings
+      && recipe1.prepTimeInMinutes === recipe2.prepTimeInMinutes
+      && recipe1.cookTimeInMinutes === recipe2.cookTimeInMinutes
+      && JSON.stringify(recipe1.ingredients) == JSON.stringify(recipe2.ingredients)
+      && JSON.stringify(recipe1.instructions) == JSON.stringify(recipe2.instructions)
+      && recipe1.author === recipe2.author
+      && recipe1.imageBase64 === recipe2.imageBase64) {
+      flag = true
+    }
+
+    return flag
   }
 
   /**
@@ -215,34 +217,34 @@ export class RecipePage implements OnInit, OnDestroy {
     const recipePrepTimeInMinutes = (this.recipePrepHours * 60) + this.recipePrepMinutes
     const recipeCookTimeInMinutes = (this.recipeCookHours * 60) + this.recipeCookMinutes
 
-        if (this.recipeName !== this.oldRecipe.name) {
-          flag = false
-        }
-        if (this.recipeDescription !== this.oldRecipe.description) {
-          flag = false
-        }
-        if (this.recipeServings !== this.oldRecipe.servings) {
-          flag = false
-        }
-        if (recipePrepTimeInMinutes !== this.oldRecipe.prepTimeInMinutes) {
-          flag = false
-        }
-        if (recipeCookTimeInMinutes !== this.oldRecipe.cookTimeInMinutes) {
-          flag = false
-        }
-        if(this.base64Image) {
-          if (this.base64Image !== this.oldRecipe.imageBase64) {
-            flag = false
-          }
-        }
-        if (JSON.stringify(this.ingredientList) !== JSON.stringify(this.oldRecipe.ingredients)) {
-          flag = false
-        }
-        if (JSON.stringify(this.instructionList) !== JSON.stringify(this.oldRecipe.instructions)) {
-          flag = false
-        }
+    if (this.recipeName !== this.oldRecipe.name) {
+      flag = false
+    }
+    if (this.recipeDescription !== this.oldRecipe.description) {
+      flag = false
+    }
+    if (this.recipeServings !== this.oldRecipe.servings) {
+      flag = false
+    }
+    if (recipePrepTimeInMinutes !== this.oldRecipe.prepTimeInMinutes) {
+      flag = false
+    }
+    if (recipeCookTimeInMinutes !== this.oldRecipe.cookTimeInMinutes) {
+      flag = false
+    }
+    if (this.base64Image) {
+      if (this.base64Image !== this.oldRecipe.imageBase64) {
+        flag = false
+      }
+    }
+    if (JSON.stringify(this.ingredientList) !== JSON.stringify(this.oldRecipe.ingredients)) {
+      flag = false
+    }
+    if (JSON.stringify(this.instructionList) !== JSON.stringify(this.oldRecipe.instructions)) {
+      flag = false
+    }
 
-        return flag
+    return flag
   }
 
   /**
@@ -266,7 +268,10 @@ export class RecipePage implements OnInit, OnDestroy {
     this.currentRecipe.ingredients = this.ingredientList
     this.currentRecipe.instructions = this.instructionList
     this.currentRecipe.author = this.authService.getDisplayName()
-    this.currentRecipe.imageBase64 = this.base64Image
+
+    if (this.base64Image) {
+      this.currentRecipe.imageBase64 = this.base64Image
+    }
 
     if (this.compareRecipes(this.currentRecipe, this.oldRecipe)) {
       await this.presentToast("There are no changes made.")
@@ -274,7 +279,7 @@ export class RecipePage implements OnInit, OnDestroy {
     } else {
 
       this.recipeService.updateRecipe(this.currentRecipe)
-      this.router.navigate(['../tabs/myrecipes/recipe-details', this.recipeId])
+      this.router.navigate(['../tabs/myrecipes/recipe-details', this.currentRecipe.id])
       await this.presentToast("The recipe has been updated.")
     }
   }
@@ -384,10 +389,10 @@ export class RecipePage implements OnInit, OnDestroy {
     return true
   }
 
- /**
-  * A method that will present a toast containing a message onscreen
-  * @param message Message to be presented to the user.
-  */
+  /**
+   * A method that will present a toast containing a message onscreen
+   * @param message Message to be presented to the user.
+   */
   private async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
@@ -420,7 +425,7 @@ export class RecipePage implements OnInit, OnDestroy {
    * when there are existing changes on the page.
    */
   async handleBack(): Promise<void> {
-    if(!this.currentRecipe){
+    if (!this.currentRecipe) {
       const alert = await this.alertController.create({
         header: 'Unsaved changes',
         subHeader: 'Leaving will discard all unsaved changes.',
@@ -440,7 +445,7 @@ export class RecipePage implements OnInit, OnDestroy {
         ]
       })
       await alert.present()
-    }else if (!this.compareTextValue()) {
+    } else if (!this.compareTextValue()) {
       //show popup if user is certain to leave = losing changes...
       const alert = await this.alertController.create({
         header: 'Unsaved changes',

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FirebaseApp } from '@angular/fire/app';
-import { FirebaseStorage, updateMetadata, deleteObject, getDownloadURL, getStorage, ref, StringFormat, uploadString } from 'firebase/storage';
+import { FirebaseStorage, deleteObject, getDownloadURL, getStorage, ref, StringFormat, uploadString } from 'firebase/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class FirestorageService {
 
   constructor(private firebase: FirebaseApp) {
     this.storage = getStorage(firebase)
-   }
+  }
 
   async saveImage(base64Data: string, documentId: string): Promise<string> {
     const imgRef = ref(this.storage, documentId)

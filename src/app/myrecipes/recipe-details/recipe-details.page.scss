@@ -28,7 +28,7 @@
     .informationValues {
         display: none;
     }
-  }
+}
 
 @media only screen and (min-width: 991px) {
     ion-img {
@@ -40,7 +40,7 @@
     }
 
     .row-title {
-        box-shadow:  0px 11px 20px -10px #00000033, 0px -11px 20px -10px #00000033;
+        box-shadow: 0px 11px 20px -10px #00000033, 0px -11px 20px -10px #00000033;
     }
 
     .informationValues {
@@ -53,4 +53,4 @@
     .bottomInformationValues {
         display: none;
     }
-  }
+}

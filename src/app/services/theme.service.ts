@@ -27,11 +27,11 @@ export class ThemeService {
         this.setAppTheme()
       }
     })
-   }
+  }
 
   setAppTheme(): void {
     this.subscriptions.push(this.darkValue.subscribe(value => {
-      if(value) {
+      if (value) {
         document.body.classList.add('dark')
       } else {
         document.body.classList.remove('dark')
@@ -51,7 +51,7 @@ export class ThemeService {
   }
 
   async retrieveDarkValue(): Promise<boolean> {
-    const theme = await Storage.get({key: this.storageKey})
+    const theme = await Storage.get({ key: this.storageKey })
 
     return JSON.parse(theme.value) || false
   }

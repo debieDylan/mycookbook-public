@@ -22,4 +22,4 @@ import { SharedModule } from '../shared/shared.module';
   ],
   declarations: [FavoritesPage]
 })
-export class FavoritesPageModule {}
+export class FavoritesPageModule { }

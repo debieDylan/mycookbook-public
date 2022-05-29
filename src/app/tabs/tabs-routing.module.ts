@@ -19,19 +19,19 @@ const routes: Routes = [
       },
       {
         path: 'search',
-        loadChildren: () => import('../search/search.module').then( m => m.SearchPageModule)
+        loadChildren: () => import('../search/search.module').then(m => m.SearchPageModule)
       },
       {
         path: 'favorites',
-        loadChildren: () => import('../favorites/favorites.module').then( m => m.FavoritesPageModule)
+        loadChildren: () => import('../favorites/favorites.module').then(m => m.FavoritesPageModule)
       },
       {
         path: 'settings',
-        loadChildren: () => import('../settings/settings.module').then( m => m.SettingsPageModule)
+        loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule)
       },
       {
         path: 'profile',
-        loadChildren: () => import('../profile/profile.module').then( m => m.ProfilePageModule)
+        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
       },
     ]
   },
@@ -46,4 +46,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

@@ -9,8 +9,7 @@ export class PhotoService {
 
   private readonly photos: Photo[] = []
   private photo: Photo
-  private photoURIs: string[]
-  private permissionGranted: PermissionStatus = {camera: 'granted', photos: 'granted'}
+  private permissionGranted: PermissionStatus = { camera: 'granted', photos: 'granted' }
 
   constructor() { }
 

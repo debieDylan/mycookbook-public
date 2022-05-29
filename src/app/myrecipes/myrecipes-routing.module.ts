@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
-import { redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { Routes, RouterModule } from '@angular/router';
 import { RecipeResolverService } from '../resolver/recipe-resolver.service';
 
 import { MyrecipesPage } from './myrecipes.page';
-
-const redirectFail = () => redirectUnauthorizedTo(['/myrecipes'])
 
 const routes: Routes = [
   {
@@ -14,25 +11,25 @@ const routes: Routes = [
   },
   {
     path: 'recipe',
-    loadChildren: () => import('./recipe/recipe.module').then( m => m.RecipePageModule)
+    loadChildren: () => import('./recipe/recipe.module').then(m => m.RecipePageModule)
   },
   {
     path: 'recipe/:id',
     resolve: {
       special: RecipeResolverService
     },
-    loadChildren: () => import('./recipe/recipe.module').then( m => m.RecipePageModule)
+    loadChildren: () => import('./recipe/recipe.module').then(m => m.RecipePageModule)
   },
   {
     path: 'recipe-details/:id',
     resolve: {
       special: RecipeResolverService
     },
-    loadChildren: () => import('./recipe-details/recipe-details.module').then( m => m.RecipeDetailsPageModule),
+    loadChildren: () => import('./recipe-details/recipe-details.module').then(m => m.RecipeDetailsPageModule),
   },
   {
     path: 'recipe-details',
-    loadChildren: () => import('./recipe-details/recipe-details.module').then( m => m.RecipeDetailsPageModule)
+    loadChildren: () => import('./recipe-details/recipe-details.module').then(m => m.RecipeDetailsPageModule)
   }
 ];
 
@@ -40,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MyrecipesPageRoutingModule {}
+export class MyrecipesPageRoutingModule { }

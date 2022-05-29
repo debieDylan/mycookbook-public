@@ -24,8 +24,7 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-@import "~swiper/scss";
-@import "~@ionic/angular/css/ionic-swiper";
+@import "~swiper/swiper-bundle.css";
 
 /*ion-searchbar {
     input {
@@ -36,24 +35,24 @@
     }
   }*/
 
-  ion-button {
-    --border-radius: 2px;
+ion-button {
+  --border-radius: 2px;
 }
 
 :root {
   --ion-color-main: #65bb45;
-	--ion-color-main-rgb: 101,187,69;
-	--ion-color-main-contrast: #ffffff;
-	--ion-color-main-contrast-rgb: 0,0,0;
-	--ion-color-main-shade: #59a53d;
-	--ion-color-main-tint: #74c258;
+  --ion-color-main-rgb: 101, 187, 69;
+  --ion-color-main-contrast: #ffffff;
+  --ion-color-main-contrast-rgb: 0, 0, 0;
+  --ion-color-main-shade: #59a53d;
+  --ion-color-main-tint: #74c258;
 
   --ion-color-mainlight: #f0f5e4;
-	--ion-color-mainlight-rgb: 204,234,139;
-	--ion-color-mainlight-contrast: #000000;
-	--ion-color-mainlight-contrast-rgb: 0,0,0;
-	--ion-color-mainlight-shade: #b4ce7a;
-	--ion-color-mainlight-tint: #d1ec97;
+  --ion-color-mainlight-rgb: 204, 234, 139;
+  --ion-color-mainlight-contrast: #000000;
+  --ion-color-mainlight-contrast-rgb: 0, 0, 0;
+  --ion-color-mainlight-shade: #b4ce7a;
+  --ion-color-mainlight-tint: #d1ec97;
 }
 
 .ion-color-main {
@@ -74,7 +73,7 @@
   --ion-color-tint: var(--ion-color-mainlight-tint);
 }
 
-ion-header ion-toolbar{
+ion-header ion-toolbar {
   --background: var(--ion-color-main);
   --color: var(--ion-color-main-contrast);
 }
@@ -101,11 +100,11 @@ ion-content {
 
 .editInstruction {
   .alert-input-wrapper {
-      height: auto !important;
+    height: auto !important;
 
-      textarea {
-        min-height: 150px !important;
-        min-width: 120px !important;
-      }
+    textarea {
+      min-height: 150px !important;
+      min-width: 120px !important;
+    }
   }
 }

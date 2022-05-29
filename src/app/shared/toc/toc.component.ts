@@ -10,7 +10,7 @@ export class TocComponent implements OnInit {
 
   constructor(public modalController: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   dismiss(): void {
     this.modalController.dismiss({

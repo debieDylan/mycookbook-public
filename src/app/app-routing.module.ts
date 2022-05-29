@@ -9,13 +9,13 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [AuthGuard],
-    data: {authGuardPipe: redirectUnauthorizedToLogin},
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule),
     canActivate: [AuthGuard],
-    data: {authGuardPipe: redirectAuthorizedToHome}
+    data: { authGuardPipe: redirectAuthorizedToHome }
   },
 
 ];

@@ -6,6 +6,7 @@ import { ApiItemComponent } from './api-item/api-item.component';
 import { InstructionComponent } from './instruction/instruction.component';
 import { SwiperModule } from 'swiper/angular';
 import { TocComponent } from './toc/toc.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { TocComponent } from './toc/toc.component';
   imports: [
     CommonModule,
     IonicModule,
-    SwiperModule
+    SwiperModule,
+    FormsModule
   ]
 })
 export class SharedModule { }

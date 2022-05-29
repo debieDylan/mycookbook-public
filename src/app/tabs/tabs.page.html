@@ -9,8 +9,8 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-title class="ion-text-center ion-margin-top">{{currentUser.displayName}}</ion-title>
     <ion-list (click)="menu.close()">
+      <ion-title class="ion-text-center ion-margin-top">{{currentUser.displayName}}</ion-title>
       <ion-item class="link" lines="none" (click)="navigateToPage('profile')">My Profile</ion-item>
       <ion-item class="link" lines="none" (click)="signOut()">Sign out</ion-item>
       <ion-item-divider></ion-item-divider>

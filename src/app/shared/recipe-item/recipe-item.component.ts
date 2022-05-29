@@ -18,9 +18,9 @@ export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe
 
   constructor(public activatedRoute: ActivatedRoute, public router: Router, public alertController: AlertController,
-              public databaseService: DatabaseService, public fireStorage: FirestorageService,
-              public recipeService: RecipeService, private authService: AuthService,
-              public toastController: ToastController) {
+    public databaseService: DatabaseService, public fireStorage: FirestorageService,
+    public recipeService: RecipeService, private authService: AuthService,
+    public toastController: ToastController) {
   }
 
   ngOnInit() {
@@ -29,8 +29,8 @@ export class RecipeItemComponent implements OnInit {
   }
 
   private converseToTimeFormat(valueInMinutes: number): string {
-    const duration = intervalToDuration({start: 0, end: valueInMinutes*60 * 1000})
-    return `${duration.hours.toLocaleString('en-US',{minimumIntegerDigits: 2, useGrouping: false})}:${duration.minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}`
+    const duration = intervalToDuration({ start: 0, end: valueInMinutes * 60 * 1000 })
+    return `${duration.hours.toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}:${duration.minutes.toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}`
   }
 
   async deleteAlert() {
@@ -54,11 +54,11 @@ export class RecipeItemComponent implements OnInit {
   }
 
   private async deleteRecipe(id: string) {
-    if(this.activatedRoute.snapshot.parent.routeConfig.path === "myrecipes") {
+    if (this.activatedRoute.snapshot.parent.routeConfig.path === "myrecipes") {
       await this.recipeService.deleteRecipe(id, 'recipes', false).then(async () => {
         await this.presentToast()
       })
-    } else if(this.activatedRoute.snapshot.parent.routeConfig.path === "favorites") {
+    } else if (this.activatedRoute.snapshot.parent.routeConfig.path === "favorites") {
       await this.recipeService.deleteRecipe(id, `users/${this.authService.getUserUID()}/favorites`, true).then(async () => {
         await this.presentToast()
       })

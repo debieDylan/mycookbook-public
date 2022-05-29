@@ -16,10 +16,10 @@ export class RegisterPage implements OnInit {
   isSubmitted = false
   errorMessage: string
 
-  constructor(public authService: AuthService, 
-              public databaseService: DatabaseService, 
-              public formBuilder: FormBuilder,
-              public modalController: ModalController) { }
+  constructor(public authService: AuthService,
+    public databaseService: DatabaseService,
+    public formBuilder: FormBuilder,
+    public modalController: ModalController) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -41,13 +41,13 @@ export class RegisterPage implements OnInit {
 
     if (!this.registerForm.valid) {
       this.errorMessage = 'Please provide all the required values.'
-      this.registerForm.setErrors({active: true})
+      this.registerForm.setErrors({ active: true })
       return false
     }
 
     if (this.registerForm.value.password !== this.registerForm.value.repeat) {
       this.errorMessage = 'Password does not match.'
-      this.registerForm.setErrors({active: true})
+      this.registerForm.setErrors({ active: true })
       return false
     }
 
@@ -56,9 +56,9 @@ export class RegisterPage implements OnInit {
       this.databaseService.createUser(result.user.uid, result.user.displayName)
       return true
     } catch (error) {
-      this.registerForm.setErrors({active: true})
+      this.registerForm.setErrors({ active: true })
 
-      if(error.code === 'auth/email-already-in-use') {
+      if (error.code === 'auth/email-already-in-use') {
         this.errorMessage = 'This e-mail adress is already in use.'
       } else {
         this.errorMessage = error.message

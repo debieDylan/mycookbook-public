@@ -9,7 +9,7 @@ import { SwiperComponent } from 'swiper/angular';
 })
 export class HelpComponent implements OnInit {
 
-  @ViewChild('swiper', {static: false}) swiper?: SwiperComponent
+  @ViewChild('swiper', { static: false }) swiper?: SwiperComponent
 
   constructor(public modalController: ModalController) { }
 

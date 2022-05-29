@@ -15,8 +15,8 @@ export class DataResolverService implements Resolve<any> {
     let recipe: ApiRecipe
     let id = route.paramMap.get('id')
     recipe = this.apiService.getDataById(Number(id))
-    
-    if(recipe === undefined) {
+
+    if (recipe === undefined) {
       recipe = this.dummy.getData(Number(id))
     }
     return recipe

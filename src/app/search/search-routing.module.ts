@@ -11,14 +11,14 @@ const routes: Routes = [
   },
   {
     path: 'recipe-details',
-    loadChildren: () => import('./recipe-details/recipe-details.module').then( m => m.RecipeDetailsPageModule)
+    loadChildren: () => import('./recipe-details/recipe-details.module').then(m => m.RecipeDetailsPageModule)
   },
   {
     path: 'recipe-details/:id',
     resolve: {
       special: DataResolverService
     },
-    loadChildren: () => import('./recipe-details/recipe-details.module').then( m => m.RecipeDetailsPageModule),
+    loadChildren: () => import('./recipe-details/recipe-details.module').then(m => m.RecipeDetailsPageModule),
   }
 ];
 
@@ -26,4 +26,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SearchPageRoutingModule {}
+export class SearchPageRoutingModule { }

@@ -28,7 +28,6 @@ export class DatabaseService {
     auth: Auth) {
     auth.onAuthStateChanged(user => {
       if (user) {
-        //DIT GEDEELTE WAS VOORNAMELIJK VOOR INLOG MET GOOGLE, IS NIET NODIG ALS GEREGISTREERD WORDT MET EMAIL
         this.handleLogin(user.displayName)
       } else {
         this.unsubscribeAll.forEach(u => u())
@@ -175,7 +174,6 @@ export class DatabaseService {
   }
 
   /**
-   * IS EIGENLIJK ENKEL NUTTIG BIJ GOOGLE INLOG, DEZE WORDT ACHTERAF VERWIJDERD...
    * A method that will verify whether a user is logged in for the first time or not.
    * If it's the first login, a new user record will be stored in Firestore.
    */
@@ -210,7 +208,14 @@ export class DatabaseService {
     const toast = await this.toastController.create({
       message: message,
       duration: 3000,
-      icon: 'information-circle-outline'
+      icon: 'information-circle-outline',
+      buttons: [
+        {
+          side: 'end',
+          text: 'OK',
+          role: 'cancel'
+        }
+      ]
     })
     toast.present()
   }

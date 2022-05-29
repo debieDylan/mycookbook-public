@@ -20,10 +20,10 @@ export class SearchPage implements OnInit, OnDestroy {
   subscriptions: Subscription[] = []
 
   constructor(public apiService: ApiService, public dummy: DummyService) {
-   }
+  }
 
   ngOnInit() {
-    if(this.readApi) {
+    if (this.readApi) {
       this.retrieveRecipe()
     } else {
       console.log("read dummy data...")
@@ -48,7 +48,7 @@ export class SearchPage implements OnInit, OnDestroy {
   }
 
   async loadRecipes(event: any): Promise<void> {
-    if(this.readApi) {
+    if (this.readApi) {
       await this.retrieveRecipe()
     } else {
       await this.retrieveDummyData()
@@ -70,18 +70,18 @@ export class SearchPage implements OnInit, OnDestroy {
     this.offset = 0
 
     //logic for presenting dummy data
-    if(!this.readApi && (this.searchText !== undefined || this.searchText !== "")) {
+    if (!this.readApi && (this.searchText !== undefined || this.searchText !== "")) {
       this.subscriptions.push(this.dummy.ob.subscribe(x => {
         this.recipes = x.filter(x => x.title.toLowerCase().includes(this.searchText))
       }))
       return
-    } else if(!this.readApi) {
+    } else if (!this.readApi) {
       await this.retrieveDummyData()
       return
     }
 
     //logic for presenting API data
-    if(this.searchText !== undefined && this.searchText !== "") {
+    if (this.searchText !== undefined && this.searchText !== "") {
       this.subscriptions.push(this.apiService.getRecipesFiltered(this.searchText, this.offset).subscribe(x => {
         this.recipes = x
         this.apiService.setData(this.recipes)

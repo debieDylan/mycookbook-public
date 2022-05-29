@@ -11,11 +11,11 @@ import { ThemeService } from '../services/theme.service';
 })
 export class TabsPage implements OnInit, OnDestroy {
 
-  currentUser 
+  currentUser
 
   constructor(public authService: AuthService, public recipeService: RecipeService, private router: Router, public themeService: ThemeService) {
-    
-   }
+
+  }
 
   ngOnInit() {
     this.currentUser = this.authService.currentUser
@@ -33,7 +33,7 @@ export class TabsPage implements OnInit, OnDestroy {
   private loadData() {
     this.recipeService.loadRecipeList()
   }
-  
+
   navigateToPage(page: string): void {
     this.router.navigateByUrl(`tabs/${page}`)
   }

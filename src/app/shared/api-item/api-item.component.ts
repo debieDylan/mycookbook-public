@@ -19,8 +19,8 @@ export class ApiItemComponent implements OnInit {
   }
 
   private converseToTimeFormat(valueInMinutes: number): string {
-    const duration = intervalToDuration({start: 0, end: valueInMinutes*60 * 1000})
-    return `${duration.hours.toLocaleString('en-US',{minimumIntegerDigits: 2, useGrouping: false})}:${duration.minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}`
+    const duration = intervalToDuration({ start: 0, end: valueInMinutes * 60 * 1000 })
+    return `${duration.hours.toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}:${duration.minutes.toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}`
   }
 
 }

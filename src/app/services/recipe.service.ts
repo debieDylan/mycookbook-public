@@ -27,23 +27,23 @@ export class RecipeService implements OnDestroy {
         this.subscriptions.forEach(u => u.unsubscribe())
       }
     })
-   }
+  }
 
-   ngOnDestroy(): void {
-     //Safe Fail: If the service is destroyed, unsubscribe from all subscriptions if there are any.
-     if(this.subscriptions.length > 0) {
-       this.subscriptions.forEach(u => u.unsubscribe())
-     }
-   }
+  ngOnDestroy(): void {
+    //Safe Fail: If the service is destroyed, unsubscribe from all subscriptions if there are any.
+    if (this.subscriptions.length > 0) {
+      this.subscriptions.forEach(u => u.unsubscribe())
+    }
+  }
 
-   /**
-    * A method that loads the personal recipe list and favorite recipe list.
-    */
+  /**
+   * A method that loads the personal recipe list and favorite recipe list.
+   */
   loadRecipeList(): void {
     this.subscriptions.push(this.databaseService.retrieveRecipesAsObservable().subscribe(data => {
       this.recipeListBehavior.next(data)
     }))
-    this.subscriptions.push(this.databaseService.retrieveFavoriteRecipesAsObservable().subscribe( data => {
+    this.subscriptions.push(this.databaseService.retrieveFavoriteRecipesAsObservable().subscribe(data => {
       this.favoriteListBehavior.next(data)
     }))
   }
@@ -90,7 +90,7 @@ export class RecipeService implements OnDestroy {
    * This is important when trying to delete a recipe.
    */
   async deleteRecipe(id: string, collection: string, isFavorite: boolean): Promise<void> {
-    if(!isFavorite) {
+    if (!isFavorite) {
       await this.fireStorageService.deleteImage(id)
     }
     await this.databaseService.deleteRecipe(collection, id)
@@ -101,7 +101,7 @@ export class RecipeService implements OnDestroy {
    * @param recipe The recipe object that needs to be updated.
    */
   async updateRecipe(recipe: Recipe): Promise<void> {
-    if(recipe.imageBase64 !== undefined) {
+    if (recipe.imageBase64 !== undefined) {
       const url = await this.fireStorageService.saveImage(recipe.imageBase64, recipe.id)
       recipe.imageUrl = url
     }

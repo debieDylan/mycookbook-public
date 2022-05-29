@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ApiRecipe, ApiResult } from '../datatypes/apiResult';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
-import {catchError, map} from 'rxjs/operators'
+import { catchError, map } from 'rxjs/operators'
 import { Auth } from '@angular/fire/auth';
 
 @Injectable({
@@ -26,35 +26,35 @@ export class ApiService {
         this.subscriptions.forEach(u => u.unsubscribe())
       }
     })
-   }
+  }
 
-   /**
-    * Gets the first 10 records from the API. The offset decides the starting point.
-    * @param offset A number that indicates how many records should be skipped before returning a result.
-    * @returns A list of ApiRecipe
-    */
+  /**
+   * Gets the first 10 records from the API. The offset decides the starting point.
+   * @param offset A number that indicates how many records should be skipped before returning a result.
+   * @returns A list of ApiRecipe
+   */
   getRecipes(offset: number): Observable<ApiRecipe[]> {
     return this.http
-    .get<ApiResult<ApiRecipe>>(
-      `${this.baseURL}/complexSearch`,
-      {
-        observe: 'body',
-        responseType: 'json',
-        params: {
-          apiKey: `${this.apiKey}`,
-          addRecipeInformation: true,
-          fillIngredients: true,
-          offset: offset
+      .get<ApiResult<ApiRecipe>>(
+        `${this.baseURL}/complexSearch`,
+        {
+          observe: 'body',
+          responseType: 'json',
+          params: {
+            apiKey: `${this.apiKey}`,
+            addRecipeInformation: true,
+            fillIngredients: true,
+            offset: offset
+          }
         }
-      }
-    )
-    .pipe(
-      map<ApiResult<ApiRecipe>, ApiRecipe[]>(o => {return o.results}),
-      catchError(error => {
-        console.error(error)
-        return of(undefined)
-      })
-    )
+      )
+      .pipe(
+        map<ApiResult<ApiRecipe>, ApiRecipe[]>(o => { return o.results }),
+        catchError(error => {
+          console.error(error)
+          return of(undefined)
+        })
+      )
   }
 
   /**
@@ -66,27 +66,27 @@ export class ApiService {
    */
   getRecipesFiltered(searchText: string, offset: number): Observable<ApiRecipe[]> {
     return this.http
-    .get<ApiResult<ApiRecipe>>(
-      `${this.baseURL}/complexSearch`,
-      {
-        observe: 'body',
-        responseType: 'json',
-        params: {
-          apiKey: `${this.apiKey}`,
-          addRecipeInformation: true,
-          fillIngredients: true,
-          titleMatch: searchText,
-          offset: offset
+      .get<ApiResult<ApiRecipe>>(
+        `${this.baseURL}/complexSearch`,
+        {
+          observe: 'body',
+          responseType: 'json',
+          params: {
+            apiKey: `${this.apiKey}`,
+            addRecipeInformation: true,
+            fillIngredients: true,
+            titleMatch: searchText,
+            offset: offset
+          }
         }
-      }
-    )
-    .pipe(
-      map<ApiResult<ApiRecipe>, ApiRecipe[]>(o => {return o.results}),
-      catchError(error => {
-        console.error(error)
-        return of(undefined)
-      })
-    )
+      )
+      .pipe(
+        map<ApiResult<ApiRecipe>, ApiRecipe[]>(o => { return o.results }),
+        catchError(error => {
+          console.error(error)
+          return of(undefined)
+        })
+      )
   }
 
   /**

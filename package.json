@@ -41,6 +41,7 @@
     "@capacitor/storage": "^1.2.5",
     "@ionic/angular": "^6.0.0",
     "@ionic/pwa-elements": "^3.1.1",
+    "@swiper/core": "^0.0.21",
     "cordova-plugin-screen-orientation": "^3.0.2",
     "country-calling-code": "0.0.3",
     "date-fns": "^2.28.0",

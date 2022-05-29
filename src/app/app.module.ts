@@ -20,28 +20,28 @@ import { HelpComponent } from './myrecipes/recipe/component/help/help.component'
   declarations: [AppComponent, HelpComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SwiperModule,
-  // Firebase main import
-  provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    // Firebase main import
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
 
-  // Firestore database import
-  provideFirestore(() => {
-    const firestore = getFirestore()
-    //enable offline persistence
-    enableIndexedDbPersistence(firestore)
-    return firestore
-  }),
+    // Firestore database import
+    provideFirestore(() => {
+      const firestore = getFirestore()
+      //enable offline persistence
+      enableIndexedDbPersistence(firestore)
+      return firestore
+    }),
 
-  // Firebase authentication import
-  provideAuth(() => getAuth()),
-  HttpClientModule,
-  ServiceWorkerModule.register('ngsw-worker.js', {
-    enabled: environment.production,
-    // Register the ServiceWorker as soon as the application is stable
-    // or after 30 seconds (whichever comes first).
-    registrationStrategy: 'registerWhenStable:30000'
-  })
+    // Firebase authentication import
+    provideAuth(() => getAuth()),
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

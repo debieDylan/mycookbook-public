@@ -19,4 +19,4 @@ import { SharedModule } from '../shared/shared.module';
   ],
   declarations: [SearchPage]
 })
-export class SearchPageModule {}
+export class SearchPageModule { }

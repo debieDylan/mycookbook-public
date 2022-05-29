@@ -21,12 +21,12 @@ export class RecipeDetailsPage implements OnInit, OnDestroy {
   subscriptions: Subscription[] = []
 
   constructor(public activatedRoute: ActivatedRoute,
-              public router: Router, 
-              public recipeService: RecipeService,
-              public modalController: ModalController) { }
+    public router: Router,
+    public recipeService: RecipeService,
+    public modalController: ModalController) { }
 
   ngOnInit() {
-    if(this.activatedRoute.snapshot.data['special']) {
+    if (this.activatedRoute.snapshot.data['special']) {
       this.recipe = this.activatedRoute.snapshot.data['special']
       this.recipe.summary = this.recipe.summary.replace(/<\/?[^>]+>/gi, ' ')
       this.recipe.instructions = []
@@ -38,7 +38,7 @@ export class RecipeDetailsPage implements OnInit, OnDestroy {
         });
       });
 
-      if(this.recipe.instructions.length === 0) {
+      if (this.recipe.instructions.length === 0) {
         this.recipe.instructions.push('There are no instructions available')
       }
 
@@ -52,8 +52,6 @@ export class RecipeDetailsPage implements OnInit, OnDestroy {
       });
 
       this.checkFavoriteList()
-
-      console.log(this.recipe)
     }
   }
 
@@ -69,7 +67,7 @@ export class RecipeDetailsPage implements OnInit, OnDestroy {
   async presentModal() {
     const modal = await this.modalController.create({
       component: InstructionComponent,
-      componentProps: { 
+      componentProps: {
         instructions: this.recipe.instructions
       }
     })
@@ -80,7 +78,7 @@ export class RecipeDetailsPage implements OnInit, OnDestroy {
     this.subscriptions.push(this.recipeService.currentFavoriteList.subscribe(favorites => {
       const result = favorites.find(recipe => recipe.id === this.recipe.id.toString())
 
-      if(result) {
+      if (result) {
         this.isFavorite = true
       }
     }))

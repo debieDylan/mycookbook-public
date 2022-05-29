@@ -1,27 +1,26 @@
-import { FoodType, Ingredient } from "./ingredient"
-import { Review } from "./review"
+import { Ingredient } from "./ingredient"
 
 export interface RecipeI {
-    id?: string //id of the recipe //is dit nodig in document database als veldje?
-    userId: string //FK naar user // zal wss nodig zijn...
+    id?: string
+    userId: string
     name: string
-    imageUrl?: string //ref naar Firebase Storage
+    imageUrl?: string
     servings: number
-    ingredients: Ingredient[] //bekijken....moet uiteindelijk maar een array zijn en geen subcollectie...
+    ingredients: Ingredient[]
     description: string
     instructions: string[]
-    author: string //display name van user ? nodig ? Ja voor duplicate data en vermijden extra reads...displayname van gebruiker is nodig...displayname = accountName en moet uniek zijn.
+    author: string
     date?: number
-    prepTimeInMinutes: number //zeker maken in UI dat uur en minuut gescheiden zijn...
+    prepTimeInMinutes: number
     cookTimeInMinutes: number
 }
 
 export class Recipe implements RecipeI {
-    id?: string //hier wel id maken, Interface heeft deze niet, dus wanneer die gebruikt wordt, kan object met id meegegeven worden, maar id niet mee opgeslagen als property.
-    userId: string // neemt id over van de user die het maakt.
+    id?: string
+    userId: string
     name: string
-    imageUrl?: string //moet referentie zijn naar url in Firebase Storage...
-    servings: number //enkel gehele getallen...
+    imageUrl?: string
+    servings: number
     ingredients: Ingredient[] = []
     description: string
     instructions: string[] = []

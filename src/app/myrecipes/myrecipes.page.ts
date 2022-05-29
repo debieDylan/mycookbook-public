@@ -15,6 +15,6 @@ export class MyrecipesPage {
   recipes$: Observable<RecipeI[]> = this.recipeService.currentRecipeList
 
   constructor(public activatedRoute: ActivatedRoute,
-              public router: Router, 
-              public recipeService: RecipeService) { }
+    public router: Router,
+    public recipeService: RecipeService) { }
 }

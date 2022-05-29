@@ -21,4 +21,4 @@ import { SwiperModule } from 'swiper/angular';
   ],
   declarations: [RecipePage]
 })
-export class RecipePageModule {}
+export class RecipePageModule { }

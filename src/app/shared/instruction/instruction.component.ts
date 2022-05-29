@@ -1,30 +1,50 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import SwiperCore, { Pagination, SwiperOptions, Navigation } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
 
+SwiperCore.use([Pagination, Navigation])
 @Component({
   selector: 'app-instruction',
   templateUrl: './instruction.component.html',
   styleUrls: ['./instruction.component.scss'],
 })
-export class InstructionComponent implements OnInit {
+export class InstructionComponent implements OnInit, AfterContentChecked {
 
   instructions: string[]
-  index: number = 0
-  @ViewChild('swiper', {static: false}) swiper?: SwiperComponent
+  @ViewChild('swiper', { static: false }) swiper?: SwiperComponent
+  isFirstChild: boolean = true
+  isLastChild: boolean = false
+  config: SwiperOptions = {
+    slidesPerView: 1,
+    spaceBetween: 50,
+    pagination: {
+      clickable: true
+    },
+    observer: true,
+    observeParents: true,
+    navigation: {
+      nextEl: '.swiper-button-next-unique',
+      prevEl: '.swiper-button-prev-unique'
+    }
+  }
 
   constructor(public modalController: ModalController) { }
 
   ngOnInit() {
   }
 
-  handleBack(): void {
-    console.log(this.swiper)
-    this.swiper.swiperRef.slidePrev(100)
+  ngAfterContentChecked(): void {
+    if (this.swiper) {
+      this.swiper.updateSwiper({})
+    }
   }
 
-  handleContinue(): void {
-    this.swiper.swiperRef.slideNext(100)
+  slideChanged(e: any) {
+    this.isFirstChild = e[0].activeIndex === 0 ? true : false
+    this.isLastChild = e[0].activeIndex === (this.instructions.length - 1) ? true : false
+    this.swiper.updateSwiper({})
+
   }
 
   dismiss(): void {

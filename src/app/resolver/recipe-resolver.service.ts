@@ -11,9 +11,9 @@ export class RecipeResolverService implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot) {
     const id = route.paramMap.get('id')
-    if(route.parent.routeConfig.path === "myrecipes") {
+    if (route.parent.routeConfig.path === "myrecipes") {
       return this.recipeService.getRecipeById(id)
-    } else if(route.parent.routeConfig.path === "favorites") {
+    } else if (route.parent.routeConfig.path === "favorites") {
       return this.recipeService.getFavoriteRecipeById(id)
     }
   }
