@@ -20,6 +20,8 @@ export class RecipeService implements OnDestroy {
 
   private subscriptions: Subscription[] = []
 
+  private readonly favoriteCollection = `users/${this.authService.getUserUID()}/favorites`
+
   constructor(public databaseService: DatabaseService, public fireStorageService: FirestorageService, public authService: AuthService, auth: Auth) {
     //If the user signs out, all subscriptions in the service should be unsubscribed from.
     auth.onAuthStateChanged(user => {
@@ -92,6 +94,16 @@ export class RecipeService implements OnDestroy {
   async deleteRecipe(id: string, collection: string, isFavorite: boolean): Promise<void> {
     if (!isFavorite) {
       await this.fireStorageService.deleteImage(id)
+
+      //check if recipe is in favorite list
+      this.subscriptions.push(this.currentFavoriteList.subscribe(async x => {
+        const result = x.find(fav => fav.id === id)
+
+        if (result) {
+          //if present, delete record in favorite collection
+          await this.databaseService.deleteRecipe(this.favoriteCollection, result.id)
+        }
+      }))
     }
     await this.databaseService.deleteRecipe(collection, id)
   }
@@ -146,7 +158,7 @@ export class RecipeService implements OnDestroy {
     //Delete all Favorite recipes from the user, this will delete the subcollection under this user.
     this.subscriptions.push(this.currentFavoriteList.subscribe(x => {
       x.forEach(async recipe => {
-        await this.databaseService.deleteRecipe(`users/${this.authService.getUserUID()}/favorites`, recipe.id)
+        await this.databaseService.deleteRecipe(this.favoriteCollection, recipe.id)
       })
     }))
 
